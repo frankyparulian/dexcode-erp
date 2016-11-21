@@ -1,0 +1,11 @@
+<div class="login-form">
+  <div class="title">Create Company</div>
+
+  <%= form_for(@company, url: companies_path) do |f| %>
+    <div class="form-group">
+      <%= f.text_field :name, autofocus: true, placeholder: 'Company Name' %>
+    </div>
+
+    <%= f.submit "Create", class: 'button button-primary' %>
+  <% end %>
+</div>

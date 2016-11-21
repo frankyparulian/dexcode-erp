@@ -1,0 +1,38 @@
+<div class="form-container">
+<div class="flash">
+  <% if flash[:alert] %>
+    <div id="alert" class="alert alert-danger alert-dismissable" role="alert">
+      <button type="button" class="close" data-dismiss="alert">
+        <span aria-hidden="true">&times;</span>
+        <span class="sr-only">Close</span>
+      </button>
+      <%= alert %>
+    </div>
+  <% end %>
+</div>
+
+<div class="login-form">
+  <div class="title">Sign In</div>
+
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="form-group">
+      <%= f.email_field :email, autofocus: true, placeholder: 'Email', required: true %>
+    </div>
+
+    <div class="form-group">
+      <%= f.password_field :password, autocomplete: "off", placeholder: 'Password', required: true %>
+    </div>
+
+    <%= f.submit "Sign in", class: 'button button-primary' %>
+  <% end %>
+
+  <div class="form-footer">
+    <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+  </div>
+</div>
+
+<div class="login-form-append">
+  Don't have an account? <%= link_to "Sign up", new_registration_path(resource_name) %>
+</div>
+
+</div>

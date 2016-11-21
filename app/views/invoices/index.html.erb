@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="clearfix">
+    <div class="pull-left">
+      <h2>List Invoice</h2>
+        <div class="client-name">
+          <h3>Client Name : <%= @clients.name %></a></h3>
+        </div>
+    </div>
+    <div class="pull-right">
+      <a href="<%= new_invoice_path(client_id: (params[:client_id])) %>" class="button button-default">Create Invoice</a>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <tr>
+        <th>Name Project</th>
+        <th>Begin Period</th>
+        <th>End Period</th>
+        <th>Fee</th>
+        <th>Invoice File</th>
+      </tr>
+
+      <% @invoices.each do |invoice| %>
+        <tr>
+          <td><a href=" <%= edit_invoice_path(invoice) %>"><%= invoice.number %></a></td>
+          <td><%= invoice.begin_date %></td>
+          <td><%= invoice.end_date %></td>
+          <td><%= invoice.total %></td>
+          <td>
+            <% invoice.documents.each do |doc| %>
+              <%= link_to doc.document.filename, document_url(doc), data: { toggle: 'tooltip', placement: 'top', title: 'Download Invoice PDF File' } %>
+              <%= link_to '', document_url(doc), method: :delete, class: 'glyphicon glyphicon-remove text-muted', data: { toggle: 'tooltip', placement: 'top', title: 'Delete File' } %><br />
+            <% end %>
+            <%= link_to 'Generate Invoice', documents_url(invoice_id: invoice), method: :post, class: 'button button-default', data: { toggle: 'tooltip', placement: 'top', title: 'Generate Invoice PDF File' } %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+
+</div>

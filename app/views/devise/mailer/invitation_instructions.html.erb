@@ -1,0 +1,23 @@
+<tr>
+  <td>
+    <p><%= t("devise.mailer.invitation_instructions.hello", email: @resource.email) %></p>
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <p><%= t("devise.mailer.invitation_instructions.someone_invited_you", url: root_url) %></p>
+  </td>
+</tr>
+
+<tr>
+  <td style="text-align: center;">
+    <%= link_to t("devise.mailer.invitation_instructions.accept"), accept_invitation_url(@resource, :invitation_token => @token), class: 'button' %>
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <p><%= t("devise.mailer.invitation_instructions.ignore").html_safe %></p>
+  </td>
+</tr>

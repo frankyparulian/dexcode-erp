@@ -1,0 +1,100 @@
+<div class="container">
+  <div class="row">
+    <h1>Export Timesheet Data to Drive</h1>
+    <div class="col-sm-3 pull-right">
+      <a href="/timesheet_report/chart" class="btn btn-success" style="margin-bottom:5px">View Graph</a>
+      <a href="/timesheet_report" class="btn btn-info" style="margin-bottom:5px">View Table</a>
+    </div>
+  </div>
+  <div class="row" style="margin-top:10px">
+    <form class="form-horizontal form-ane" action="/drives/update" method="POST">
+    <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+      <div class="form-group">
+        <label for="inputEmail3" class="col-sm-2 control-label">Periode</label>
+        <div class="col-sm-10">
+        <%= select_tag(:month, options_for_select(
+            [
+              ['January', 1],
+              ['February', 2],
+              ['March', 3],
+              ['April', 4],
+              ['Mei', 5],
+              ['June', 6],
+              ['July', 7],
+              ['August', 8],
+              ['September', 9],
+              ['Oktober', 10],
+              ['November', 11],
+              ['December', 12],
+            ], Time.now.month,),{ class: 'select2'} ) %>
+          <select id="date_month" name="year" class="select2">
+            <% for year in ((Time.now.year)-20)..Time.now.year %>
+              <option value="<%= year %>" <%= 'selected' if year == Time.now.year %>> <%= year %></option>
+            <% end %>
+          </select>
+          <select id="project" name="project" class="select2">
+           <% @project.each do |project|%>
+              <option value="<%= project.id %>"> <%= project.name %></option>
+            <% end %>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Worksheet</label>
+        <div class="col-sm-10">
+          <ul class="drive-view">
+            <% @session.files.each do |file|%>
+              <% if file.mime_type == 'application/vnd.google-apps.spreadsheet' && !file.labels.trashed %>
+                <li class="row">
+                  <div class="col-md-11 text-ar">
+                    <label for="<%= file.id %>">
+                      <input type="radio" name ="id" id="<%= file.id %>" value="<%= file.id %>" class="icheck-me" data-skin="square" data-color="blue">
+                      <span class="file-title">
+                        <%= file.title %>
+                      </span>
+                      <div class="time">
+                        Last Edited : <%= file.modified_date.to_time.to_datetime.strftime("%d-%m-%Y %H:%M:%S") %>
+                      </div>
+                    </label>
+                  </div>
+                  <a href = "<%= file.embed_link%>" class = "mug" target="_blank"><i class="fa fa-search"></i></a>
+                </li>
+              <% end %>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <input type="submit" class="btn btn-success" value="export">
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<script type="text/javascript">
+  function icheck(){
+    if($(".icheck-me").length > 0){
+      $(".icheck-me").each(function(){
+        var $el = $(this);
+        var skin = ($el.attr('data-skin') !== undefined) ? "_" + $el.attr('data-skin') : "",
+        color = ($el.attr('data-color') !== undefined) ? "-" + $el.attr('data-color') : "";
+        var opt = {
+          checkboxClass: 'icheckbox' + skin + color,
+          radioClass: 'iradio' + skin + color,
+        }
+        $el.iCheck(opt);
+      });
+    }
+  }
+  jQuery(document).ready(function($) {
+    icheck();
+    $('.select2').select2();
+    $('.form-ane').submit(function(){
+      if(!confirm("Are You Sure ?")){
+
+        return false;
+      }
+    });
+  });
+</script>

@@ -1,0 +1,84 @@
+.single-image-select {
+  position: relative;
+  border: 1px solid #ddd;
+  background-color: #fafafa;
+  width: 150px;
+  height: 150px;
+  display: block;
+  line-height: 150px;
+  border-radius: 3px;
+
+  .image-preview {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 148px;
+    height: 148px;
+    background-position: center;
+    background-size: cover;
+  }
+
+  .file-select {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    opacity: 0;
+    z-index: 100;
+    font-size: 150px;
+    cursor: pointer;
+    content: "";
+  }
+
+  .upload-overlay {
+    opacity: 0;
+    background-color: #f1f1f1;
+    color: @brandBlue;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    text-align: center;
+    border-top: 1px solid #ddd;
+    height: 2em;
+    line-height: 2em;
+    z-index: 1;
+    cursor: pointer;
+    transition: all 0.2s linear;
+  }
+
+  .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 101;
+    opacity: 0;
+    color: #aaa;
+    transition: all 0.2s linear;
+  }
+
+  .blank-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 150px;
+    height: 150px;
+    line-height: 150px;
+    font-size: 50px;
+    color: #ddd;
+    text-align: center;
+  }
+}
+.single-image-select:hover {
+  .upload-overlay {
+    opacity: 1;
+  }
+  .close {
+    opacity: 1;
+  }
+}

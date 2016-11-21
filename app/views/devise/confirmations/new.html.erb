@@ -1,0 +1,28 @@
+<div class="flash">
+  <% if flash[:alert] %>
+    <div id="alert" class="alert alert-danger alert-dismissable" role="alert">
+      <button type="button" class="close" data-dismiss="alert">
+        <span aria-hidden="true">&times;</span>
+        <span class="sr-only">Close</span>
+      </button>
+      <%= alert %>
+    </div>
+  <% end %>
+</div>
+
+<div class="login-form">
+  <div class="title">
+    Resend confirmation instructions
+  </div>
+
+  <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+    
+    <div class="form-group">
+      <%= f.email_field :email, autofocus: true %>
+    </div>  
+
+    <%= f.submit "Resend confirmation instructions", class: 'button button-primary' %>
+  <% end %>
+</div>
+
+<%= render "devise/shared/links" %>

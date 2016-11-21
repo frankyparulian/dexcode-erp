@@ -1,0 +1,30 @@
+<script>
+	$(document).ready(function(){
+
+	$(".form-se").submit(function(){
+		$.ajax({
+		  	url: $(".form-se").attr('action'),
+		  	method: "POST",
+		  	data: $(".form-se").serialize(),
+		  	DataTypes: "json"
+		}).done(function(data) {
+		  	$(".table-timesh tbody").html("");
+		  	$.each(data,function(key,val){
+		  		$(".table-timesh tbody").append(""+
+		  			"<tr>"+
+		  				"<td>"+val.name+"</td>"+
+		  				"<td>"+ (val.sum_hours ? val.sum_hours : 0) +"</td>"+
+		  			"</tr>"+
+		  		"")
+		  	})
+		});
+		return false;
+	});
+
+	$(".form-se select,.form-se input").change(function(){
+		$(this).parents(".form-se").submit();
+	});
+	$(".form-se").submit(); 
+	
+});
+</script>

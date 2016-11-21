@@ -1,0 +1,145 @@
+// Place all the styles related to the OrganizationStructures controller here.
+// They will automatically be included in application.css.
+// You can use Less here: http://lesscss.org/
+
+#papermint{
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  .chart-field{
+    width: 80%;
+    height: 600px;
+    overflow: auto;
+    text-align: center;
+    float: left;
+    background: white;
+    border: 2px solid #CCC;
+    border-right: 0;
+    svg{
+      width: auto;
+      height: auto;
+    }
+  }
+  .unparent-field{
+    border: 2px solid #ccc;
+    width: auto;
+    float: left;
+    height: 600px;
+    width: 270px;
+    overflow: hidden;
+    overflow-y: auto;
+    padding: 20px;
+    background: #fff;
+  }
+  .drag-element{
+    position: absolute;
+  }
+  .draggable-rect{
+
+  }
+}
+g.button{
+  .btn-primary{
+    fill: rgb(241, 196, 15);
+    stroke: #000;
+    stroke-width: 3;
+  }
+}
+.element{
+  cursor: move !important;
+}
+g {
+  .button:hover .btn-primary{
+    fill: #999;
+  }
+  .rect{
+    fill:rgb(203, 219, 255);
+    stroke-width: 2;
+    stroke: rgb(0,0,0);
+
+  }
+}
+.draggable-rect{
+  fill:#F9F9F9;
+  stroke-width: 2;
+  stroke: rgb(0,0,0);
+  opacity: .5;
+  stroke-dasharray: 10 5;
+}
+.close-div{
+  float: right;
+  margin-right: 59px;
+  margin-top: 6px;
+}
+.add-div{
+  float: right;
+  margin-right: 70px;
+  margin-top: 17px
+}
+circle.close-circle{
+  fill: red;
+  r:10;
+  stroke:blue;
+  stroke-width:0;
+  cursor : pointer;
+  -webkit-transition: stroke-width .1s;
+  -o-transition: stroke-width .1s;
+  transition: stroke-width .1s;
+}
+.close-button:hover > .close-circle{
+  stroke-width : 3 ;
+}
+text.close-text{
+  font-size: 33px;
+  cursor:pointer;
+  fill : white;
+  transform: translate(-5px,9px);
+  -ms-transform: translate(-5px,9px); /* IE 9 */
+  -webkit-transform: translate(-5px,9px); /* Safari and Chrome */
+  -o-transform: translate(-5px,9px); /* Opera */
+  -moz-transform: translate(-5px,9px); /* Firefox */
+}
+
+/*Add button*/
+circle.add-circle{
+  fill: rgb(61, 181, 255);;
+  r:10;
+  stroke:blue;
+  stroke-width:0;
+  -webkit-transition: stroke-width .1s;
+  -o-transition: stroke-width .1s;
+  transition: stroke-width .1s;
+}
+text.add-text{
+  font-size: 24px;
+  fill : white;
+  transform: translate(-7px,8px);
+  -ms-transform: translate(-7px,8px); /* IE 9 */
+  -webkit-transform: translate(-7px,8px); /* Safari and Chrome */
+  -o-transform: translate(-7px,8px); /* Opera */
+  -moz-transform: translate(-7px,8px); /* Firefox */
+}
+
+.add-button:hover > .add-circle{
+  stroke-width : 3 ;
+}
+
+#papermint svg > g > g{
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.rect-helper{
+  border: 2px dashed #999;
+  position: absolute;
+  width: 200px;
+  height: 80px;
+  background: rgba(153, 153, 153, 0.19);
+}

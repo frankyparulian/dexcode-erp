@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="clearfix">
+    <div class="pull-left">
+      <h2>Time Entry</h2>
+    </div>
+  </div>
+
+  <%= form_for [@employee, @time_entry], html: { class: 'form-horizontal default-form' } do |f| %>
+    <div class="row">
+      <div class="pull-left">
+        <%= select_tag :project, options_from_collection_for_select(@projects, 'id', 'name'), class: 'form-control' %>
+      </div>
+      <% if current_user.business_owner? %>
+        <div class="pull-right">
+          <%= select_tag :employee, options_from_collection_for_select(@employees, 'id', 'name'), class: 'form-control' %>
+        </div>
+      <% end %>
+      <br /><br /><br />
+    </div>
+
+
+    <div class="row">
+      <table class="table table-bordered">
+          <tr>
+            <th>Mon</th>
+            <th>Tue</th>
+            <th>Wed</th>
+            <th>Thu</th>
+            <th>Fri</th>
+            <th>Sat</th>
+            <th>Sun</th>
+          </tr>
+          <tr>
+            <td>Hour</td>
+          </tr>
+          <tr>
+            <td><%= f.text_area :hour, autofocus: true, resize: false %></td>
+          </tr>
+      </table>
+    </div>
+  <% end %>
+
+</div>

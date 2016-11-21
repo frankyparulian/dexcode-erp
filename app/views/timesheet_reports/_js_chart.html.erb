@@ -1,0 +1,111 @@
+<style type="text/css">
+body { font-family: Verdana, Arial, sans-serif; font-size: 12px; }
+h1 { width: 450px; margin: 0 auto; font-size: 12px; text-align: center; }
+#placeholder { width: 450px; height: 200px; position: relative; margin: 0 auto; }
+.legend table, .legend > div { height: 82px !important; opacity: 1 !important; right: -55px; top: 10px; width: 116px !important; }
+.legend table { border: 1px solid #555; padding: 5px; }
+#flot-tooltip { font-size: 12px; font-family: Verdana, Arial, sans-serif; position: absolute; display: none; border: 2px solid; padding: 2px; background-color: #FFF; opacity: 0.8; -moz-border-radius: 5px; -webkit-border-radius: 5px; -khtml-border-radius: 5px; border-radius: 5px; }
+</style>
+<script>
+
+    
+
+    function showTooltip(x, y, contents, z) {
+        $('<div id="flot-tooltip">' + contents + '</div>').css({
+            top: y - 30,
+            left: x - 135,
+            'border-color': z,
+        }).appendTo("body").fadeIn(200);
+    }
+    function getMonthName(numericMonth) {
+        var monthArray = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        var alphaMonth = monthArray[numericMonth];
+ 
+        return alphaMonth;
+    }
+ 
+    function convertToDate(timestamp) {
+        var newDate = new Date(timestamp);
+        var dateString = newDate.getMonth();
+        var monthName = getMonthName(dateString);
+ 
+        return monthName;
+    }
+ 
+    var previousPoint = null;
+ 
+    function get_data(){
+        $.ajax({
+            url: $(".form-se").attr('action'),
+            method: "POST",
+            data: $(".form-se").serialize(),
+            DataTypes: "json"
+        }).done(function(data) {
+            console.log(data)
+            $('#container').highcharts({
+                title: {
+                    text: 'Timeline Report',
+                    x: -20 //center
+                },
+                xAxis: {
+                    categories: data.month
+                },
+                yAxis: {
+                    title: {
+                        text: 'Hours'
+                    },
+                    plotLines: [{
+                        value: 0,
+                        width: 1,
+                        color: '#808080'
+                    }]
+                },
+                tooltip: {
+                    valueSuffix: 'Hours'
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'middle',
+                    borderWidth: 0
+                },
+                series: data.data
+            });
+        });
+    }
+
+    $(document).ready(function () {
+        $(".form-se").submit(function(){
+            get_data();
+            return false;
+        });
+
+        $(".form-se select,.form-se input").change(function(){
+            $(this).parents(".form-se").submit();
+        });
+        $(".form-se").submit();
+        
+        $("#placeholder").bind("plothover", function (event, pos, item) {
+            if (item) {
+                if ((previousPoint != item.dataIndex) || (previousLabel != item.series.label)) {
+                    previousPoint = item.dataIndex;
+                    previousLabel = item.series.label;
+     
+                    $("#flot-tooltip").remove();
+     
+                    var x = convertToDate(item.datapoint[0]),
+                    y = item.datapoint[1];
+                    z = item.series.color;
+     
+                    showTooltip(item.pageX, item.pageY,
+                        "<b>" + item.series.label + "</b><br /> " + x + " = " + y + "hour",
+                        z);
+                }
+            } else {
+                $("#flot-tooltip").remove();
+                previousPoint = null;
+            }
+        });
+
+    }); 
+</script>

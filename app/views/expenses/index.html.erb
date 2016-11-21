@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="clearfix">
+    <div class="pull-left">
+      <h2>List Expenses</h2>
+    </div>
+    <div class="pull-right">
+      <a href="<%= new_expense_path %>" class="button button-default">Add New Expense</a>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <tr>
+        <th>Name</th>
+        <th>Date</th>
+        <th>Total</th>
+      </tr>
+
+      <% @expenses.each do |expense| %>
+        <tr>
+          <td><a href=" <%= edit_expense_path(expense) %>"><%= expense.name %></a></td>
+          <td><%= expense.date %></td>
+          <td><%= expense.total %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

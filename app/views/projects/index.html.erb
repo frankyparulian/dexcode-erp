@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="clearfix">
+    <div class="pull-left">
+      <h2>List Project</h2>
+    </div>
+    <div class="pull-right">
+      <a href="<%= new_project_url %>" class="button button-default">Add Project</a>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <tr>
+        <th>Name</th>
+        <th>Employees</th>
+        <th>Client</th>
+      </tr>
+      <% if @projects %>
+        <% @projects.each do |project| %>
+          <tr>
+            <td><%= project.name %></td>
+            <td>
+              <% project.employees.each do |employee| %>
+                <%= employee.name %>
+                <%= link_to '', employee_project_url(id: employee.id, project_id: project.id), method: :delete, class: 'glyphicon glyphicon-remove text-muted', data: { toggle: 'tooltip', placement: 'top', title: 'Remove Employee from this Project' } %><br />
+              <% end %>
+              <%= link_to 'Add Employee', new_employee_project_url(project_id: project.id), class: 'button button-default' %>
+              <%= link_to 'Delete Project', project_url(project.client_id, project), method: :delete, data: { confirm: 'Are you sure?' }, class: 'button button-default' %>
+            </td>
+            <td>
+              <%= project.client.name %>
+            </td>
+          </tr>
+        <% end %>
+      <% else %>
+        <td colspan="3"> Empty </td>
+      <% end %>
+    </table>
+  </div>
+</div>

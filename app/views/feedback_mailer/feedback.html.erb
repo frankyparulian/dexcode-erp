@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+  <div><h2>Hi, <%= @client.name%>!</h2></div>
+  <div>We want to know Our performances for You, and want to make it better. Please, give Us a Feedback by clicking this link:</div>
+  <br />
+  <div><a href="<%= feedback_url(@feedback.gid) %>" target="_blank">Feedback Link</a></div>
+</body>
+</html>

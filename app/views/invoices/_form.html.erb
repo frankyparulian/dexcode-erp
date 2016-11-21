@@ -1,0 +1,55 @@
+<%= form_for @invoice, html: { class: 'form-horizontal default-form' } do |f| %>
+  <fieldset>
+    <legend>Invoice Info</legend>
+
+    <%= f.hidden_field :client_id %>
+    <div class="form-group">
+      <%= f.label :begin_date, class: 'col-sm-2 control-label' %>
+      <div class="col-sm-10">
+        <%= f.text_field :begin_date, :class => 'jquery-datepicker'%>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :end_date, class: 'col-sm-2 control-label' %>
+      <div class="col-sm-10">
+        <%= f.text_field :end_date, :class => 'jquery-datepicker' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Bill To:</label>
+      <div class="col-sm-10">
+        <textarea class="billing-address" disabled><%= @invoice.client.billing_address %></textarea>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :payment_information, class: 'col-sm-2 control-label'%>
+      <div class="col-sm-10">
+        <%= f.text_area  :payment_information%>
+      </div>
+    </div>
+
+  </fieldset>
+
+  <fieldset>
+    <legend>Invoice Items</legend>
+
+    <%= react_component 'InvoiceItemsForm' %>
+  </fieldset>
+
+  <br />
+  <hr />
+
+  <div class="form-group">
+    <div class="col-sm-12">
+      <%= f.submit 'Save', class: 'button button-default' %>
+      <% if @invoice.persisted? %>
+        <%= link_to "Delete Expense", invoice_path, method: :delete, class: 'button button-default' %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  InvoiceItemsStore.setItems(<%= @invoice.invoice_items.to_json.html_safe %>);
+</script>

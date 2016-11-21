@@ -1,0 +1,69 @@
+<div class="container">
+  <div>
+    <h2>Employees Salary</h2>
+    <strong>Period:</strong>
+    <div class="select-date-period">
+      <%= select_month @period %>
+      <%= select_year @period %>
+    </div>
+  </div>
+
+  <br />
+
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <tr>
+        <th>Name</th>
+        <th>Work Days</th>
+        <th>Total Holidays</th>
+        <th>Absences</th>
+        <th>Vacations</th>
+        <th>Actual Work Days</th>
+        <th>Paid Work Days</th>
+        <th>Gaji</th>
+        <th>Bank Name</th>
+        <th>Bank Code</th>
+        <th>Rekening</th>
+      </tr>
+
+      <% @employees.each do |employee| %>
+        <tr>
+          <td><%= employee.name %></td>
+          <td><%= employee.work_days %></td>
+          <td><%= @number_of_holidays %></td>
+          <td><%= employee.absences %></td>
+          <td><%= employee.vacations %></td>
+          <td><%= employee.actual_work_days %></td>
+          <td><%= employee.actual_paid_work_days %></td>
+          <td><%= humanized_money_with_symbol employee.computed_salary %></td>
+          <td><%= employee.bank_name %></td>
+          <td><%= employee.bank_code %></td>
+          <td><%= employee.bank_account_number %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      function updateSalaries() {
+        var month = $('#date_month').val();
+        var year = $('#date_year').val();
+        window.location = URI(window.location.toString())
+          .removeSearch('month')
+          .removeSearch('year')
+          .addSearch('month', month)
+          .addSearch('year', year)
+          .toString();
+      }
+
+      $('#date_month').on('change', function () {
+        updateSalaries();
+      });
+      $('#date_year').on('change', function () {
+        updateSalaries();
+      });
+    });
+  </script>
+</div>

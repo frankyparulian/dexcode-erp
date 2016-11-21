@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="pull-left">
+        <h2>List Employees</h2>
+      </div>
+      <div class="pull-right">
+        <a href="<%= new_employee_path %>" class="button button-default">Add Employee</a>
+      </div>
+
+    </div>
+  </div>
+
+  <div>
+    <a href="<%= employees_path %>" class="button button-default">Active</a>
+    <a href="<%= employees_path(show_all: true) %>" class="button button-default">All</a>
+    <a href="<%= organization_structures_path %>" class="button button-default">Organization Structure</a>
+    <br />
+    <br />
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <tr>
+        <th>Name</th>
+        <th>Position</th>
+        <th>Vacation</th>
+        <th>Tax</th>
+        <th>Review Month</th>
+        <th>Invite</th>
+      </tr>
+
+      <% @employees.each do |employee| %>
+        <tr>
+          <td><a href="<%= edit_employee_path(employee) %>"><%= employee.name %></a></td>
+          <td><%= employee.position %></td>
+          <td><%= employee.vacation %></td>
+          <td><%= employee.employee_monthly_tax.round %> </td>
+          <td><%= employee.review_month.present? ? Date::MONTHNAMES[employee.review_month] : 'Zero' %></td>
+          <td>
+            <% if employee.invited_to_sign_up? && !employee.invitation_accepted?%>
+              <a href="<%= new_invite_path(employee_id: employee.id) %>" class="button button-default">Resend Invite</a>
+            <% elsif employee.invitation_accepted? %>
+              <label>Invited</label>
+            <% else %>
+              <a href="<%= new_invite_path(employee_id: employee.id) %>" class="button button-default">Invite</a>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

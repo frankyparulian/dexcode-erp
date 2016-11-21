@@ -1,0 +1,19 @@
+development:
+  client_id: 159421133333-c3jvrudcjg1sb8g382506lu6c9e1vu0g.apps.googleusercontent.com
+  client_secret: 5468tiL1oTWzcJ9uZwAxEA0p
+  redirect_uri: http://localhost:3000/timesheet_report/google
+
+test:
+  client_id: 765126107703-phjun7ae306sth16tm1j25nc2li3kqqa.apps.googleusercontent.com
+  client_secret: DErlvy20DpAH6x4eGlRdiJ_Q
+  redirect_uri: http://localhost:3000/oauth2callback
+
+staging:
+  client_id: 765126107703-vn50mqbdlf4beobdivm5crqa3d765528.apps.googleusercontent.com
+  client_secret: EH4Nrd2oMw34DcjvUFQanl68
+  redirect_uri: http://getfoqus.com/oauth2callback
+
+production:
+  client_id: 765126107703-vn50mqbdlf4beobdivm5crqa3d765528.apps.googleusercontent.com
+  client_secret: EH4Nrd2oMw34DcjvUFQanl68
+  redirect_uri: http://getfoqus.com/oauth2callback

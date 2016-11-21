@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="dexcode" xmlns='http://www.w3.org/1999/xhtml' xmlns:v="urn:schemas-microsoft-com:vml">
+<head>
+  <title>Dexcode ERP</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500' rel='stylesheet' type='text/css'>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+
+</head>
+<body>
+  <%= render 'layouts/header' %>
+    <div class="fixed-container">
+      <div class="flash">
+        <% if flash[:notice] %>
+          <div id="notice" class="alert alert-success alert-dismissable" role="alert">
+            <!-- <button type="button" class="close" data-dismiss="alert">
+              <span aria-hidden="true">&times;</span>
+              <span class="sr-only">Close</span>
+            </button> -->
+            <%= notice %>
+          </div>
+        <% end %>
+        <% if flash[:alert]%>
+          <div id="alert" class="alert alert-danger  alert-dismissable" role="alert">
+            <!-- <button type="button" class="close" data-dismiss="alert">
+              <span aria-hidden="true">&times;</span>
+              <span class="sr-only">Close</span>
+            </button> -->
+            <%= alert %>
+          </div>
+        <% end %>
+      </div>
+    <%= yield %>
+  </div>
+  <script type="text/javascript">
+    var DexcodeERP = DexcodeERP || {};
+    DexcodeERP.img_loader_url = '<%= asset_path('loader.gif') %>' ;
+  </script>
+</body>
+</html>

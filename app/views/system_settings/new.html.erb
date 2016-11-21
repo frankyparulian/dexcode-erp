@@ -1,0 +1,16 @@
+<div class="container">
+  <h2>Setting</h2>
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="<%= 'active' unless params[:l]%>"><a href="<%= new_system_setting_path%>">General</a></li>
+    <li role="presentation" class="<%= 'active' if params[:l] == 'google'%>">
+      <%= link_to 'Google Api', new_system_setting_path(l: 'google')%>
+    </li>
+    <li role="presentation"><a href="#messages">Messages</a></li>
+    <li role="presentation"><a href="#settings">Settings</a></li>
+  </ul>
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active">
+      <%= render @render_page %>
+    </div>
+  </div>
+</div>

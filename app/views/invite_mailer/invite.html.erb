@@ -1,0 +1,21 @@
+<tr>
+  <td align="left" valign="top">
+    <p style="font-family: Verdana, Geneva, sans-serif; color:#000000; font-size:13px; line-height:21px">
+      Hi <%= @email %>,
+    </p>
+  </td>
+</tr>
+<tr>
+  <td>
+    <p style="font-family: Verdana, Geneva, sans-serif; color:#000000; font-size:13px; line-height:21px">
+      Kami meng-invite Anda untuk bergabung di Dexcode
+    </p>
+  </td>
+</tr>
+<tr>
+  <td>
+
+  <a href="<%=  new_user_registration_url(code: @code) %>" class="button button-default">confirm</a>
+
+ </td>
+</tr>

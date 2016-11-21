@@ -1,0 +1,26 @@
+<div class="container">
+  <h2>New Employee for Project</h2>
+
+  <%= form_for [@client, @employee_project], html: { class: 'form-horizontal default-form' } do |f|  %>
+
+    <fieldset>
+      <%= f.hidden_field :project_id, value: params[:project_id]%>
+
+      <legend>Employees</legend>
+
+      <div class="form-group">
+        <%= f.label :employee, class: 'col-sm-2 control-label' %>
+        <div class="col-sm-10">
+          <%= f.select 'employee_id', options_from_collection_for_select(@employees, 'id', 'name'), {}, { class: 'form-control' } %>
+        </div>
+      </div>
+    </fieldset>
+
+    <div class="form-group">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-10">
+      <%= f.submit 'Save', class: 'button button-default' %>
+    </div>
+  </div>
+  <% end %>
+</div>

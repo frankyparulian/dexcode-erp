@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="clearfix">
+    <div class="pull-left">
+      <h2>List Clients</h2>
+    </div>
+    <div class="pull-right">
+      <a href="<%= new_client_path %>" class="button button-default">Add New Client</a>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <tr>
+        <th>Name</th>
+        <th>Start Date Project</th>
+        <th>End Date Project</th>
+        <th>Invoice</th>
+      </tr>
+
+      <% @clients.each do |client| %>
+        <tr>
+          <td><a href="<%= edit_client_path(client) %>"><%= client.name %></a></td>
+          <td><%= client.start_date %></td>
+          <td><%= client.end_date %></td>
+          <td>
+              <a href="<%= invoices_path(client_id: client.id) %>" class="btn btn-primary">See Invoice</a>
+              <a href="<%= new_invoice_path(client_id: client.id) %>" class="btn btn-primary">Create Invoice</a>
+              <%= link_to 'Send Feedback', feedbacks_url(client_id: client.id), method: :post, class: 'btn btn-primary' %>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary btn-client-url" data-toggle="modal" data-target="#modal-client-url" data-url="">
+                Client feedback url
+              </button>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modal-client-url" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="background:rgba(153, 153, 153, 0.53)">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel" style="padding:0">Client Feedback Url</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-9">
+              <input type="text" class="url-text form-control" readonly >
+            </div>
+            <button class="btn btn-primary btn-sm col-md-2 btn-select-text">Select text</button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

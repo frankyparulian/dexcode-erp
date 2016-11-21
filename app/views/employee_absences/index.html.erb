@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row">
+    <div class="pull-left">
+      <h2>List Absences</h2>
+    </div>
+    <div class="pull-right">
+      <a href="<%= new_employee_employee_absence_url %>" class="button button-default">Add Absence</a>
+    </div>
+  </div>
+
+  <div class="row">
+    <span><strong>Total: <%= @absences.size > 0 ? pluralize(@absences.size, 'Absence') : 0 %></strong></span>
+    <br /><br />
+  </div>
+
+  <div class="row">
+    <div class="table-responsive">
+    <table class="table table-bordered">
+      <tr>
+        <th>Date</th>
+        <th>Reason</th>
+        <th>Use Sick Days</th>
+      </tr>
+
+      <% @absences.each do |absence| %>
+        <tr>
+          <td><a href="<%= edit_employee_employee_absence_url(absence.employee_id, absence) %>"><%= absence.date %></a></td>
+          <td><%= absence.reason %></td>
+          <td><%= absence.use_sick_days %></td>
+        </tr>
+      <% end %>
+    </table>
+    </div>
+  </div>
+</div>

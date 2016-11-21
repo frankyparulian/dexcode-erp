@@ -1,0 +1,41 @@
+<div class="container">
+  <h2>Feedback</h2>
+  <%= form_tag({}, { method: :patch, class: 'form-horizontal default-form' }) do %>
+    <fieldset>
+      <div class="form-group">
+        <%= label_tag 'Feedback', 'Feedback', class: 'col-sm-2 control-label' %>
+        <div class="col-sm-10">
+          <%= text_area_tag 'content', nil, autofocus: true, rows: 5, cols: 50, required: true %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= label_tag 'Rating', 'Rating', class: 'col-sm-2 control-label' %>
+        <div class="col-sm-10">
+        <span class="rating"></span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= label_tag 'Allow Publish', 'Allow Publish', class: 'col-sm-2 control-label' %>
+        <div class="col-sm-10">
+          <div>
+            <%= radio_button_tag 'allow_publish', 1, checked: true %>
+            Yes, you can publish my Feedback
+          </div>
+          <div>
+            <%= radio_button_tag 'allow_publish', 0 %>
+            No, don't publish my Feedback!
+          </div>
+        </div>
+      </div>
+    </fieldset>
+
+    <div class="form-group">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-10">
+        <%= submit_tag 'Submit Feedback', class: 'button button-default' %>
+      </div>
+    </div>
+  <% end %>
+</div>

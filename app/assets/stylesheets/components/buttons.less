@@ -1,0 +1,38 @@
+.button {
+  display: inline-block;
+  text-align: center;
+  line-height: 1.42857143;
+  vertical-align: middle;
+}
+.button:hover {
+  text-decoration: none;
+}
+
+.button-default {
+  background-color: transparent;
+  padding: 10px 30px;
+  border-radius: 5px;
+  border: 1px solid @brandBlue;
+  font-weight: bold;
+}
+.button-default:hover {
+  background-color: @brandBlue;
+  border: 1px solid @brandBlue;
+  color: white !important;
+  text-decoration: none;
+}
+
+
+.button-primary {
+  padding: 10px 30px;
+  border-radius: 5px;
+  background-color: @brandBlue;
+  color: white;
+  border: none;
+}
+.button-primary:hover,
+.button-primary:focus {
+  color: white;
+  background-color: lighten(@brandBlue, 5%);
+  text-decoration: none;
+}

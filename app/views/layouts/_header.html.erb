@@ -1,0 +1,6 @@
+<% if content_for?(:header) %>
+  <%= yield :header %>
+<% else %>
+  <%= render 'layouts/navbar' %>
+<% end %>
+<script src="https://apis.google.com/js/client.js?onload=OnLoadCallback"></script>

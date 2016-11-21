@@ -1,0 +1,73 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation" navbar-float>
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="" class="navbar-brand">Dexcode HR</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-navbar">
+      <% if user_signed_in? %>
+        <% if current_user.business_owner? %>
+          <ul class="nav navbar-nav navbar-left">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Project <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="<%= 'active' if current_page?(time_entries_path) %>"><a href="<%= time_entries_path %>">Time Entries</a></li>
+                <li class="<%= 'active' if current_page?(projects_path) %>"><a href="<%= projects_path %>">Project</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Employee <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="<%= 'active' if current_page?(employees_path) %>"><a href="<%= employees_path %>">List Employes</a></li>
+                <li class="<%= 'active' if current_page?(salaries_employees_path) %>"><a href="<%= salaries_employees_path %>">Employees Salary</a></li>
+              </ul>
+            </li>
+            <li class="<%= 'active' if current_page?(clients_path) %>"><a href="<%= clients_path %>">Client</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tools <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="<%= 'active' if current_page?(holidays_path) %>"><a href="<%= holidays_path %>">Calendar</a></li>
+                <li class="<%= 'active' if current_page?(expenses_path) %>"><a href="<%= expenses_path %>">Expense</a></li>
+            <li class="<%= 'active' if current_page?(interviews_path) %>"><a href="<%= interviews_path %>">Interviews</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Report <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="<%= 'active' if current_page?("/timesheet_report") %>"><a href="/timesheet_report">Timesheet Report</a></li>
+              </ul>
+            </li>
+          </ul>
+        <% elsif current_user.employee? %>
+          <ul class="nav navbar-nav navbar-left">
+            <li class="<%= 'active' if current_page?(time_entries_url) %>">
+              <a href="<%= time_entries_url %>">Time Entry</a>
+            </li>
+          </ul>
+        <% end %>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= (current_user.email if current_user) %> <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <% if current_user.business_owner? %>
+                <li><%= link_to "Setting", new_system_setting_path%></li>
+                <li><%= link_to "Application API", oauth_applications_path%></li>
+                <li><%= link_to "Authorized App", oauth_authorized_applications_path%></li>
+                <li role="separator" class="divider"></li>
+              <% elsif current_user.employee?%>
+                <li><%= link_to "Profile", new_system_setting_path%></li>
+              <% end %>
+              <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+            </ul>
+          </li>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+</nav>

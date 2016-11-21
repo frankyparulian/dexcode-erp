@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="clearfix">
+    <div class="pull-left">
+      <h2>List Holiday</h2>
+    </div>
+    <div class="pull-right">
+      <a href="<%= 'holidays/new' %>" class="button button-default">Add Holiday</a>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <tr>
+        <th>Name</th>
+        <th>Date</th>
+        <th>Is joint holiday</th>
+      </tr>
+
+      <% @holidays.each do |holiday| %>
+      <tr>
+        <td><a href="<%= edit_holiday_path(holiday) %>"><%= holiday.name %></a></td>
+        <td><%= holiday.date %></td>
+        <td><%= holiday.is_joint_holiday %></td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

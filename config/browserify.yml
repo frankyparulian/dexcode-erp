@@ -1,0 +1,13 @@
+javascript:
+  deps:
+    require:
+      - 'react'
+      - 'react-tap-event-plugin'
+      - 'lodash'
+      - 'material-ui'
+  application:
+    external:
+      - 'react'
+      - 'react-tap-event-plugin'
+      - 'lodash'
+      - 'material-ui'

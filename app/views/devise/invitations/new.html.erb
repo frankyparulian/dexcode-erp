@@ -1,0 +1,29 @@
+<div class="flash">
+  <% if flash[:alert] %>
+    <div id="alert" class="alert alert-danger alert-dismissable" role="alert">
+      <button type="button" class="close" data-dismiss="alert">
+        <span aria-hidden="true">&times;</span>
+        <span class="sr-only">Close</span>
+      </button>
+      <%= alert %>
+    </div>
+  <% end %>
+</div>
+
+<div class="login-form">
+  <div class="title">
+    <%= t "devise.invitations.new.header" %>
+  </div>
+
+  <%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => {:method => :post} do |f| %>
+
+  <% resource.class.invite_key_fields.each do |field| -%>
+    <div class="form-group">
+      <%= f.text_field field, placeholder: field %>
+    </div>
+  <% end -%>
+
+    <p><%= f.submit t("devise.invitations.new.submit_button"), class: "button button-primary" %></p>
+  <% end %>
+</div>
+

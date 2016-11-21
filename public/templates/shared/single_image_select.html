@@ -1,0 +1,6 @@
+<div class="close" ng-click="removeFile()" ng-show="!!imagePreviewStyle"><i class="glyphicon glyphicon-remove"></i></div>
+<div class="blank-image" ng-hide="!!imagePreviewStyle"><i class="glyphicon glyphicon-picture"></i></div>
+
+<div class="image-preview" style="{{imagePreviewStyle}}"></div>
+<input type="file" id="{{attrs.id}}" name="{{attrs.name}}" class="file-select" accept="image/*" ng-file-select="onFileSelect($files)">
+<div class="upload-overlay">Upload</div>

@@ -1,0 +1,41 @@
+<form action="<%= @form_path %>" class="form-se">
+    <div class="col-md-4">
+        <div class="form-group">
+            <div class="col-md-3" style="margin-top: 7px;">
+                <label>Employee</label>
+            </div>
+            <div class="col-md-9">
+                <select name="employee[]" id="" class="form-control m-select" multiple>
+                    <% @employee.each do |employee| %>
+                        <option value="<%= employee.id %>" selected><%= employee.name %></option>
+                    <% end %>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <div class="col-md-3" style="margin-top: 7px;">
+                <label>Project</label>
+            </div>
+            <div class="col-md-9">
+                <select name="project[]" id="" class="form-control m-select" multiple>
+                    <% @project.each do |project| %>
+                        <option value="<%= project.id %>" selected><%= project.name %></option>
+                    <% end %>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label style="margin-top: 7px">Period</label>
+            <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+                <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                <span></span> <b class="caret"></b>
+                <input type="hidden" class="first-date" name="first_date">
+                <input type="hidden" class="end-date" name="end_date">
+            </div>
+        </div>
+    </div>
+</form>

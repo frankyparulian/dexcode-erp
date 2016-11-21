@@ -1,0 +1,114 @@
+/*
+ *= require twitter/bootstrap
+ *= require font-awesome
+ *= require jquery-ui
+ *= require datepicker
+ *= require daterangepicker-bs3
+ *= require select2
+ *= require select2-bootstrap
+ *= require skins/square/_all
+ *= require organization_structures
+ *
+ *= require dexcode
+ */
+
+ @import font-awesome
+
+.drive-view li {
+  list-style: none;
+  margin-left: 0;
+}
+.drive-view li .text-ar {
+  background-color: #EDEDED;
+  border: 1px solid #E0E0E0;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+.drive-view li .menu-ar {
+  width: 43px;
+  padding: 0;
+  border: 1px solid #E0E0E0;
+  border-left: 0;
+  background-color: #EDEDED;
+  cursor: pointer;
+}
+
+.menu-ar a {
+  width: 43px;
+  padding: 9px 17px 5px 17px;
+  display: block;
+  height: 40px;
+  color: #000;
+}
+
+.drive-view li .menu-ar .drop-menu {
+  position: absolute;
+  top: 53px;
+  width: 200px;
+  background-color: #F8F8F8;
+  border: 1px solid #E7E7E7;
+  left: 0px;
+}
+.drop-menu li {
+  padding: 10px;
+}
+.drop-menu li:hover {
+  background: #EDEDED;
+}
+.drop-menu::after {
+  width: 10px;
+  height: 10px;
+  content: "";
+  background: transparent;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #F8F8F8  ;
+  position: absolute;
+  top: -10px;
+  left: 13px;
+}
+
+.drop-menu::before {
+  width: 10px;
+  height: 10px;
+  content: "";
+  background: transparent;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #A6A6A6;
+  position: absolute;
+  top: -10px;
+  left: 13px;
+}
+
+.text-ar .time {
+  float: right;
+  margin-top: 5px;
+}
+
+.drive-view .mug {
+  display: inline-block;
+  padding: 14px;
+  background-color: #EDEDED;
+  border: 1px solid #E0E0E0;
+  margin-left: -1px;
+  border-left: 0;
+}
+.drive-view label {
+  padding: 12px;
+  padding-bottom: 11px;
+  width: 100%;
+  margin-bottom: 0;
+  cursor: pointer;
+}
+
+.drive-view input {
+  margin-right: 20px;
+  margin-top: 9px;
+
+}
+.drive-view .file-title {
+  position: relative;
+  top: 3px;
+  margin-left: 20px;
+}

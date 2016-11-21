@@ -1,0 +1,55 @@
+<div class="container">
+	<div class="horizontal">
+		<div class="employee-profile">
+			<div class="sub-header">
+				<div class="sub-title">Profil</div>
+			</div>
+			<div class="information-row">
+				<div class="information-name">Nama</div>
+				<div class="colon-separator">:</div>
+				<div class="information-value"><%= @employee.name %></div>
+			</div>
+			<div class="information-row">
+				<div class="information-name">Jabatan</div>
+				<div class="colon-separator">:</div>
+				<div class="information-value"><%= @employee.position %></div>
+			</div>
+			<div class="information-row">
+				<div class="information-name">Foto</div>
+				<div class="colon-separator">:</div>
+				<div class="information-value"><img src="<%= @employee.photo %>" alt="employee photo" class="img-thumbnail" style="width:304px;height:228px"></div>
+			</div>
+		</div>
+	</div>
+
+	<div class="horizontal">
+		<div class="employee-profile">
+			<div class="sub-header">
+				<div class="sub-title">Gaji</div>
+			</div>
+			<div class="information-row">
+				<div class="information-name">Nama Bank</div>
+				<div class="colon-separator">:</div>
+				<div class="information-value"><%= @employee.bank_name.present? ? @employee.bank_name : '-' %></div>
+			</div>
+			<div class="information-row">
+				<div class="information-name">Gaji</div>
+				<div class="colon-separator">:</div>
+				<div class="information-value"><%= @employee.computed_salary %></div>
+			</div>
+		</div>
+	</div>
+
+	<div class="horizontal">
+		<div class="employee-profile">
+			<div class="sub-header">
+				<div class="sub-title">Informasi Tambahan</div>
+			</div>
+			<div class="information-row">
+				<div class="information-name">Sisa Hari Sakit</div>
+				<div class="colon-separator">:</div>
+				<div class="information-value"><%= @employee.vacation %></div>
+			</div>
+		</div>
+	</div>
+</div>

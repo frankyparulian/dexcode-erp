@@ -1,0 +1,7 @@
+do_my_job:
+  # cron        : "*/10 * * * *"
+  # queue       : reminders_queue
+  args        :
+  every       : 10s
+  class       : ReminderInterview
+  description : Runs the reminder interview mail
